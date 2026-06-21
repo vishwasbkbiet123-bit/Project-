@@ -1,0 +1,43 @@
+
+===== STUDENT REPORT =====
+
+
+Roll Number : 101
+Name        : Rahul
+Marks       : [78, 82, 90]
+Total       : 250
+Average     : 83.33
+
+----------------------------------
+
+Roll Number : 102
+Name        : Aman
+Marks       : [56, 67, 72]
+Total       : 195
+Average     : 65.0
+
+----------------------------------
+
+Roll Number : 103
+Name        : Riya
+Marks       : [91, 88, 95]
+Total       : 274
+Average     : 91.33
+
+----------------------------------
+
+Roll Number : 104
+Name        : Karan
+Marks       : [35, 42, 30]
+Total       : 107
+Average     : 35.67
+
+----------------------------------
+
+Roll Number : 105
+Name        : Priya
+Marks       : [80, 76, 84]
+Total       : 240
+Average     : 80.0
+
+----------------------------------
