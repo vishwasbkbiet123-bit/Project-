@@ -54,3 +54,27 @@ Integration of OpenCV to analyze live CCTV camera feeds for real-time store foot
 Transitioning from Random Forest to Deep Learning architectures like LSTMs for complex long-term sequence predictions.
 
 
+## 📥 Dataset & Trained Model
+
+The dataset and trained Random Forest model are hosted on Kaggle because GitHub has a 100 MB file size limit.
+
+### Download Here
+https://www.kaggle.com/datasets/vishwassaini117/enterprise-demand-forecasting-dataset
+
+### Files Included
+- online_retail_II.csv
+- cleaned_online_retail.csv
+- rf_demand_model.pkl
+
+### After Download
+
+Place the downloaded files in the following folders:
+
+Enterprise_Demand_Forecast/
+│
+├── data/
+│   ├── online_retail_II.csv
+│   └── cleaned_online_retail.csv
+│
+└── models/
+    └── rf_demand_model.pkl
