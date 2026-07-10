@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/cover.png" width="100%">
+</p>
+
 # 📈 Enterprise Demand Forecasting System 🚀
 
 ## 📝 Overview
