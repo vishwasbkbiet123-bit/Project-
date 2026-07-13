@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecast Result</title>
+    <!-- Google Fonts Support -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container result-container">
+        <div class="header">
+            <h1>Prediction Complete</h1>
+            <p class="subtitle">Forecast details for your selected item</p>
+        </div>
+
+        <div class="result-card">
+            {% if error %}
+                <h3 class="error-text">⚠️ Error Encountered</h3>
+                <p>{{ error }}</p>
+            {% else %}
+                <h3>Product Name</h3>
+                <p class="product-name">{{ product }}</p>
+                
+                <div class="demand-box">
+                    <h4>Predicted Demand</h4>
+                    <span class="highlight">{{ demand }} Units</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <a href="/" class="btn-secondary">Run Another Forecast</a>
+    </div>
+</body>
+</html>

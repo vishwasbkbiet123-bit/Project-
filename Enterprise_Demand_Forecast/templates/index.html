@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Demand Forecasting</title>
+    <!-- Google Fonts Support for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Enterprise Demand Forecast</h1>
+            <p class="subtitle">AI-Powered Supply Chain Optimizer</p>
+        </div>
+
+        <form action="/predict" method="POST">
+            
+            <div class="form-group">
+                <label for="description">Select Product</label>
+                <select id="description" name="description" required>
+                    <option value="" disabled selected>-- Scroll or type to choose --</option>
+                    
+                    {% for product in products %}
+                        <option value="{{ product }}">{{ product }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="month">Forecast Month (1-12)</label>
+                <input type="number" id="month" name="month" min="1" max="12" required>
+            </div>
+
+            <div class="form-group">
+                <label for="day_of_week">Day of Week (0 = Mon, 6 = Sun)</label>
+                <input type="number" id="day_of_week" name="day_of_week" min="0" max="6" required>
+            </div>
+
+            <div class="form-group">
+                <label for="is_weekend">Is it a Weekend?</label>
+                <select id="is_weekend" name="is_weekend">
+                    <option value="0">No (Weekday)</option>
+                    <option value="1">Yes (Weekend)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="is_seasonal">Is it a Seasonal Item?</label>
+                <select id="is_seasonal" name="is_seasonal">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-primary">Generate Forecast</button>
+        </form>
+    </div>
+</body>
+</html>
