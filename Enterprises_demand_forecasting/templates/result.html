@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <!-- Flask me CSS link karne ka correct dynamic path -->
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Google ke colors wali heading -->
+        <h2 class="google-heading">Forecasting Result</h2>
+        
+        <div class="result">
+            <!-- Result ko highlight aur animate karne ke liye class add ki hai -->
+            <h3 class="prediction-text">{{ prediction_text }}</h3>
+        </div>
+
+        <br>
+        <a href="{{ url_for('home') }}" class="btn-link">
+            <button class="btn">Predict Another Product</button>
+        </a>
+    </div>
+</body>
+</html>

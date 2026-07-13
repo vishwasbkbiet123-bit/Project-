@@ -1,0 +1,170 @@
+/* =========================================
+   Google Font Import
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* =========================================
+   Global Reset & Body
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    /* Background image remains, but we will make the form solid to block it out */
+    background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), 
+                url('https://svencarlin.com/wp-content/uploads/2025/03/image-41.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+/* =========================================
+   Modern Solid Blue Container (No Transparency)
+   ========================================= */
+.container {
+    /* Solid premium dark navy blue - Blocks the background completely */
+    background: #0b192c; 
+    border-radius: 20px;
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
+    /* Stronger shadow for depth against the background */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    border: 1px solid #1e3a5f;
+    text-align: center;
+    animation: slideUp 0.8s ease-out;
+}
+
+/* =========================================
+   Typography & Headings
+   ========================================= */
+.google-heading {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    /* Modern, crisp Cyan-to-Blue gradient for better contrast */
+    background: linear-gradient(to right, #00f2fe 0%, #4facfe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1.5s ease-in;
+}
+
+/* =========================================
+   Form Layout & Inputs
+   ========================================= */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: #94a3b8; /* Softer text color for labels */
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    /* Solid, slightly lighter blue for inputs to match the theme */
+    background: #142847; 
+    border: 1px solid #234370;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-group input:focus, 
+.form-group select:focus {
+    border-color: #00f2fe;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+    background: #1a3256;
+}
+
+/* Dropdown options styling */
+.form-group select option {
+    background-color: #0b192c;
+    color: #ffffff;
+    padding: 10px;
+}
+
+/* =========================================
+   Buttons & Links
+   ========================================= */
+.btn-link {
+    text-decoration: none;
+    display: block;
+    margin-top: 15px;
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    /* Vibrant modern blue gradient for the button */
+    background: linear-gradient(135deg, #0061ff 0%, #60efff 100%);
+    color: #000; /* Dark text on bright button for contrast */
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 97, 255, 0.4);
+}
+
+/* =========================================
+   Result Page Specifics (result.html)
+   ========================================= */
+.result {
+    margin: 30px 0;
+}
+
+.prediction-text {
+    font-size: 1.4rem;
+    color: #00f2fe; 
+    padding: 20px;
+    background: #142847;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 242, 254, 0.4);
+    animation: pulse 2s infinite;
+}
+
+/* =========================================
+   Keyframe Animations
+   ========================================= */
+@keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 242, 254, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+}

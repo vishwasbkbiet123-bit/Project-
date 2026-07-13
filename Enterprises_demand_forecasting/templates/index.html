@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Demand Forecasting</title>
+    <!-- Correct Flask static file routing -->
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Applied the Google multi-color gradient class -->
+        <h2 class="google-heading">Enterprise Demand Forecasting</h2>
+        
+        <p style="text-align: center; margin-bottom: 25px; color: #e2e8f0; font-size: 0.9rem; animation: fadeIn 1.2s ease-in;">
+            Enter product details to predict the expected demand (rating count).
+        </p>
+        
+        <form action="{{ url_for('predict') }}" method="post">
+            
+            <!-- Wrapped inputs in form-group for proper spacing and animation -->
+            <div class="form-group">
+                <label for="discounted_price">Discounted Price (₹):</label>
+                <input type="number" step="any" name="discounted_price" id="discounted_price" required placeholder="e.g., 299">
+            </div>
+
+            <div class="form-group">
+                <label for="actual_price">Actual Price (₹):</label>
+                <input type="number" step="any" name="actual_price" id="actual_price" required placeholder="e.g., 999">
+            </div>
+
+            <div class="form-group">
+                <label for="discount_percentage">Discount Percentage (%):</label>
+                <input type="number" step="any" name="discount_percentage" id="discount_percentage" required placeholder="e.g., 70">
+            </div>
+
+            <div class="form-group">
+                <label for="rating">Product Rating (1.0 to 5.0):</label>
+                <input type="number" step="0.1" name="rating" id="rating" min="1" max="5" required placeholder="e.g., 4.2">
+            </div>
+
+            <div class="form-group">
+                <label for="main_category">Main Category:</label>
+                <select name="main_category" id="main_category" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option value="Computers&Accessories">Computers & Accessories</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Home&Kitchen">Home & Kitchen</option>
+                    <option value="OfficeProducts">Office Products</option>
+                    <option value="MusicalInstruments">Musical Instruments</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">Predict Demand</button>
+        </form>
+    </div>
+</body>
+</html>
