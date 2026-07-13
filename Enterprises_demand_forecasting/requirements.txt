@@ -6,3 +6,7 @@ Flask
 matplotlib
 seaborn
 jupyter
+
+# ... (your existing packages)
+gunicorn
+# ...
