@@ -1,2 +1,16 @@
-Enterprise_Demand_Forecast/models/*.pkl
-Enterprise_Demand_Forecast/data/*.csv
+# Data and Models
+*.csv
+*.pkl
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Environment
+venv/
+.env
