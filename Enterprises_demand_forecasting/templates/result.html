@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecasting Result</title>
+    
+    <!-- Google Fonts Added: Playfair Display & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <style>
+        /* Global Reset & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Flexbox for center alignment & Theme Colors */
+        body {
+            background: #F9F7F2;
+            color: #2D2D2D;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Headings Font */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Main Container with Breathing Space */
+        .container {
+            background: white;
+            padding: 60px 50px;
+            border-radius: 4px; /* 4px radius */
+            box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.04);
+            text-align: center;
+            max-width: 550px;
+            width: 100%;
+            border: 1px solid #eee;
+        }
+
+        .header-icon {
+            font-size: 55px;
+            margin-bottom: 25px;
+        }
+
+        .google-heading {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #2D2D2D;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 45px;
+        }
+
+        /* Result Card Layout */
+        .result-card {
+            background: #F9F7F2; 
+            padding: 40px 30px;
+            border-radius: 4px; /* 4px radius */
+            border: 1px solid #e5e5e5;
+            margin-bottom: 45px;
+        }
+
+        .prediction-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Value with Flexbox */
+        .prediction-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 45px;
+            font-weight: 700;
+            color: #2D2D2D;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Outline Button Styling */
+        .btn {
+            padding: 16px 35px;
+            font-size: 16px;
+            font-weight: 600;
+            background: transparent;
+            border: 2px solid #2D2D2D;
+            color: #2D2D2D;
+            border-radius: 4px; /* 4px radius */
+            cursor: pointer;
+            transition: 0.4s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #2D2D2D;
+            color: #F9F7F2;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <i class="fa-solid fa-check-circle header-icon" style="color: #4ade80;"></i>
+        <h2 class="google-heading">Analysis Complete</h2>
+        <p class="subtitle">Based on your product parameters.</p>
+        
+        <div class="result-card">
+            <div class="prediction-label">Estimated Demand:</div>
+            <!-- Backend se bheja hua sirf number yahan dikhega. Update app.py return value accordingly. -->
+            <div class="prediction-value">
+                <!-- Icon color changed to soft black for theme consistency -->
+                <i class="fa-solid fa-box-open" style="font-size: 1.8rem; color: #2D2D2D;"></i>
+                {{ prediction_text }}
+            </div>
+        </div>
+
+        <a href="{{ url_for('home') }}" style="text-decoration: none;">
+            <button class="btn btn-secondary">
+                <i class="fa-solid fa-rotate-left"></i> <span>Analyze Another Product</span>
+            </button>
+        </a>
+    </div>
+</body>
+</html>
