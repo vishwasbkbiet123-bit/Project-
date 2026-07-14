@@ -1,59 +1,737 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise Demand Forecasting</title>
-    <!-- Correct Flask static file routing -->
-    <link rel="stylesheet" href="../static/style.css">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Demand Forecasting System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Google Fonts Added: Playfair Display (Serif) & Montserrat (Sans-serif) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+/* Body text font set to Montserrat */
+font-family:'Montserrat', sans-serif;
+scroll-behavior:smooth;
+}
+
+/* Headings font set to Playfair Display */
+h1, h2, h3, h4, h5, h6, .logo {
+font-family: 'Playfair Display', serif;
+}
+
+body{
+/* Theme Background */
+background: #F9F7F2; 
+/* Theme Text Color */
+color: #2D2D2D;
+min-height:100vh;
+}
+
+/* ===========================
+Navbar
+=========================== */
+
+nav{
+width:100%;
+background:#F9F7F2; /* Matched with theme */
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 60px; /* Increased breathing space */
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0px 2px 10px rgba(0,0,0,.05); /* Lighter shadow for clean look */
+}
+
+.logo{
+font-size:30px;
+font-weight:700;
+color:#2D2D2D;
+}
+
+.logo span{
+color:#666; /* Subtle accent */
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:40px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:#2D2D2D;
+font-size:16px;
+font-weight:500;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#777;
+}
+
+/* ===========================
+Hero Section
+=========================== */
+
+.hero{
+width:90%;
+max-width:1300px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:100px 0; /* Added breathing space */
+}
+
+.hero-text{
+width:55%;
+}
+
+.hero-text h4{
+color:#555;
+font-size:22px;
+margin-bottom:15px;
+}
+
+.hero-text h1{
+font-size:60px;
+color:#2D2D2D;
+line-height:1.2;
+margin-bottom:25px;
+}
+
+.hero-text p{
+font-size:18px;
+color:#444;
+line-height:1.8;
+margin-bottom:40px;
+}
+
+/* Simple Outline Button - 4px Radius */
+.hero-text button{
+padding:14px 35px;
+font-size:16px;
+font-weight:600;
+background:transparent; 
+border:2px solid #2D2D2D; 
+color:#2D2D2D;
+border-radius:4px; 
+cursor:pointer;
+transition:.4s;
+}
+
+.hero-text button:hover{
+background:#2D2D2D;
+color:#F9F7F2;
+transform:translateY(-3px);
+}
+
+.hero-image{
+width:40%;
+display:flex;
+justify-content:center;
+}
+
+.hero-image img{
+width:100%;
+max-width:450px;
+border-radius: 4px; /* Image border radius */
+animation:float 4s infinite ease-in-out;
+}
+
+@keyframes float{
+0%{ transform:translateY(0px); }
+50%{ transform:translateY(-15px); }
+100%{ transform:translateY(0px); }
+}
+
+/* ===========================
+Container
+=========================== */
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+/* ===========================
+Form Card
+=========================== */
+
+.form-card{
+background:white;
+padding:60px; /* Increased padding for breathing space */
+border-radius:12px; 
+box-shadow:0px 10px 40px rgba(0,0,0,.04); /* Clean subtle shadow */
+margin-bottom:100px;
+}
+
+.form-card h2{
+font-size:38px;
+text-align:center;
+color:#2D2D2D;
+margin-bottom:10px;
+}
+
+.form-card p{
+text-align:center;
+margin-bottom:50px;
+color:#555;
+}
+
+/* Display Grid implemented perfectly for alignment */
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:30px; /* Breathing space between inputs */
+}
+
+.input-box{
+display:flex;
+flex-direction:column;
+}
+
+.input-box label{
+font-weight:500;
+margin-bottom:10px;
+color:#333;
+}
+
+.input-box input,
+.input-box select{
+padding:15px;
+border:1px solid #ccc;
+border-radius:4px; /* 4px radius */
+font-size:15px;
+outline:none;
+background:#fafafa;
+}
+
+.input-box input:focus,
+.input-box select:focus{
+border:1px solid #2D2D2D;
+background:white;
+}
+
+/* Simple Outline Button - Predict */
+.predict-btn{
+width:100%;
+margin-top:40px;
+padding:18px;
+font-size:18px;
+font-weight:600;
+background:transparent;
+border:2px solid #2D2D2D;
+color:#2D2D2D;
+border-radius:4px; /* 4px radius */
+cursor:pointer;
+transition:.3s;
+}
+
+.predict-btn:hover{
+background:#2D2D2D;
+color:#F9F7F2;
+}
+
+.result{
+margin-top:50px;
+background:#f1f5f1;
+padding:40px;
+border-radius:8px;
+text-align:center;
+border: 1px solid #ddd;
+}
+
+.result h1{
+font-size:48px;
+color:#2D2D2D;
+margin:10px 0;
+}
+
+/* ===========================
+Features
+=========================== */
+
+.features{
+margin:100px 0; /* Breathing space */
+}
+
+.features h2{
+text-align:center;
+font-size:42px;
+margin-bottom:60px;
+color:#2D2D2D;
+}
+
+.feature-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+}
+
+.feature-card{
+background:white;
+padding:40px 30px;
+border-radius:8px;
+border:1px solid #eee;
+text-align:center;
+transition:.4s;
+}
+
+.feature-card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 30px rgba(0,0,0,.05);
+}
+
+.icon{
+font-size:40px;
+margin-bottom:20px;
+color:#2D2D2D;
+}
+
+.feature-card h3{
+margin-bottom:15px;
+color:#2D2D2D;
+font-size:22px;
+}
+
+.feature-card p{
+color:#666;
+line-height:1.8;
+}
+
+/* ===========================
+About
+=========================== */
+
+.about{
+margin:100px 0;
+background:white;
+padding:70px 50px; /* Enhanced breathing space */
+border-radius:12px;
+border: 1px solid #eee;
+}
+
+.about h2{
+text-align:center;
+font-size:42px;
+margin-bottom:30px;
+color:#2D2D2D;
+}
+
+.about p{
+text-align:center;
+font-size:18px;
+line-height:2;
+color:#555;
+max-width: 900px;
+margin: auto;
+}
+
+.tech{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
+margin-top:45px;
+}
+
+/* Tags matching the outline style */
+.tech span{
+background:transparent;
+color:#2D2D2D;
+border: 1px solid #2D2D2D;
+padding:10px 25px;
+border-radius:4px;
+font-weight: 500;
+}
+
+/* ===========================
+Contact
+=========================== */
+
+.contact{
+margin-bottom:100px;
+background:#2D2D2D; /* Soft black theme */
+padding:70px 50px;
+border-radius:12px;
+color:#F9F7F2; /* Light Cream Text */
+text-align:center;
+}
+
+.contact h2{
+font-size:42px;
+margin-bottom:20px;
+}
+
+.contact h3{
+font-size:26px;
+margin-bottom:15px;
+font-weight: 400;
+}
+
+.contact p{
+font-size:17px;
+margin-bottom:10px;
+color: #ccc;
+}
+
+.contact-box{
+margin-top:35px;
+line-height:2;
+}
+
+/* ===========================
+Footer
+=========================== */
+
+.footer{
+background:#2D2D2D; /* Soft black */
+color:#F9F7F2; /* Cream text */
+padding:60px 20px 40px;
+margin-top:100px;
+text-align:center;
+}
+
+.footer h2{
+font-size:32px;
+margin-bottom:15px;
+}
+
+.footer p{
+color:#ccc;
+margin:10px 0;
+font-size: 15px;
+}
+
+.footer-links{
+margin:35px 0;
+}
+
+.footer-links a{
+color:#F9F7F2;
+text-decoration:none;
+margin:0 20px;
+font-size:16px;
+transition:.3s;
+}
+
+.footer-links a:hover{
+color:#aaa;
+}
+
+.copyright{
+margin-top:30px;
+font-weight:500;
+}
+
+/* ===========================
+Scroll Button
+=========================== */
+
+#topBtn{
+display:none;
+position:fixed;
+bottom:40px;
+right:40px;
+z-index:100;
+border:2px solid #2D2D2D;
+background:#F9F7F2;
+color:#2D2D2D;
+cursor:pointer;
+padding:12px 18px;
+border-radius:4px; /* 4px radius */
+font-size:20px;
+transition:.3s;
+}
+
+#topBtn:hover{
+background:#2D2D2D;
+color:#F9F7F2;
+}
+
+/* ===========================
+Responsive
+=========================== */
+
+@media(max-width:1000px){
+.feature-grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+@media(max-width:900px){
+.hero{ flex-direction:column; text-align:center; padding: 60px 0; }
+.hero-text{ width:100%; }
+.hero-image{ width:80%; margin-top:50px; }
+nav{ padding:20px 30px; }
+nav ul{ display:none; }
+.hero-text h1{ font-size:45px; }
+.grid{ grid-template-columns:1fr; }
+.form-card { padding: 40px 20px; }
+}
+
+@media(max-width:700px){
+.feature-grid{ grid-template-columns:1fr; }
+.tech{ justify-content:center; }
+.about, .contact { padding: 50px 20px; }
+}
+
+/* ===========================
+Animations
+=========================== */
+.feature-card, .form-card, .about, .contact{ animation:fadeUp .8s ease; }
+@keyframes fadeUp{ from{ opacity:0; transform:translateY(40px); } to{ opacity:1; transform:translateY(0); } }
+
+</style>
+
 </head>
+
 <body>
-    <div class="container">
-        <!-- Applied the Google multi-color gradient class -->
-        <h2 class="google-heading">Enterprise Demand Forecasting</h2>
-        
-        <p style="text-align: center; margin-bottom: 25px; color: #e2e8f0; font-size: 0.9rem; animation: fadeIn 1.2s ease-in;">
-            Enter product details to predict the expected demand (rating count).
-        </p>
-        
-        <form action="{{ url_for('predict') }}" method="post">
-            
-            <!-- Wrapped inputs in form-group for proper spacing and animation -->
-            <div class="form-group">
-                <label for="discounted_price">Discounted Price (₹):</label>
-                <input type="number" step="any" name="discounted_price" id="discounted_price" required placeholder="e.g., 299">
-            </div>
 
-            <div class="form-group">
-                <label for="actual_price">Actual Price (₹):</label>
-                <input type="number" step="any" name="actual_price" id="actual_price" required placeholder="e.g., 999">
-            </div>
+<!-- ==========================
+Navbar
+========================== -->
 
-            <div class="form-group">
-                <label for="discount_percentage">Discount Percentage (%):</label>
-                <input type="number" step="any" name="discount_percentage" id="discount_percentage" required placeholder="e.g., 70">
-            </div>
+<nav>
 
-            <div class="form-group">
-                <label for="rating">Product Rating (1.0 to 5.0):</label>
-                <input type="number" step="0.1" name="rating" id="rating" min="1" max="5" required placeholder="e.g., 4.2">
-            </div>
+<div class="logo">
+Demand<span>AI</span>
+</div>
 
-            <div class="form-group">
-                <label for="main_category">Main Category:</label>
-                <select name="main_category" id="main_category" required>
-                    <option value="" disabled selected>Select a category</option>
-                    <option value="Computers&Accessories">Computers & Accessories</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Home&Kitchen">Home & Kitchen</option>
-                    <option value="OfficeProducts">Office Products</option>
-                    <option value="MusicalInstruments">Musical Instruments</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#predict">Prediction</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 
-            <button type="submit" class="btn">Predict Demand</button>
-        </form>
-    </div>
+</nav>
+
+<!-- ==========================
+Hero Section
+========================== -->
+
+<section class="hero">
+
+<div class="hero-text">
+<h4>Artificial Intelligence Based</h4>
+<h1>Demand Forecasting System</h1>
+<p>
+Predict future product demand using Machine Learning.
+Improve inventory planning, optimize sales strategy,
+and make smarter business decisions with AI-powered
+forecasting.
+</p>
+<button onclick="document.getElementById('predict').scrollIntoView({behavior:'smooth'})">
+Start Prediction
+</button>
+</div>
+
+<div class="hero-image">
+<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900" alt="Analytics">
+</div>
+
+</section>
+
+<div class="container">
+
+<!-- ==========================
+Prediction Form
+========================== -->
+
+<section id="predict">
+
+<div class="form-card">
+<h2>Demand Prediction</h2>
+<p>Fill all the details below to predict future product demand.</p>
+
+<form action="/predict" method="POST">
+<div class="grid">
+
+<div class="input-box">
+    <label for="discounted_price">Discounted Price (₹):</label>
+    <input type="number" step="any" name="discounted_price" id="discounted_price" required placeholder="e.g., 299">
+</div>
+
+<div class="input-box">
+    <label for="actual_price">Actual Price (₹):</label>
+    <input type="number" step="any" name="actual_price" id="actual_price" required placeholder="e.g., 999">
+</div>
+
+<div class="input-box">
+    <label for="discount_percentage">Discount Percentage (%):</label>
+    <input type="number" step="any" name="discount_percentage" id="discount_percentage" required placeholder="e.g., 70">
+</div>
+
+<div class="input-box">
+    <label for="rating">Product Rating (1.0 to 5.0):</label>
+    <input type="number" step="0.1" name="rating" id="rating" min="1" max="5" required placeholder="e.g., 4.2">
+</div>
+
+<div class="input-box">
+    <label for="main_category">Main Category:</label>
+    <select name="main_category" id="main_category" required>
+        <option value="" disabled selected>Select a category</option>
+        <option value="Computers&Accessories">Computers & Accessories</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Home&Kitchen">Home & Kitchen</option>
+        <option value="OfficeProducts">Office Products</option>
+        <option value="MusicalInstruments">Musical Instruments</option>
+        <option value="Other">Other</option>
+    </select>
+</div>
+
+</div>
+
+<button class="predict-btn" type="submit">Predict Demand</button>
+
+</form>
+
+{% if prediction %}
+<div class="result">
+<h3>Prediction Result</h3>
+<h1>{{prediction}}</h1>
+<p>Estimated Demand Units</p>
+</div>
+{% endif %}
+
+</div>
+
+</section>
+
+<!-- ==========================
+Features Section
+========================== -->
+
+<section class="features">
+<h2>Why Choose Our System?</h2>
+<div class="feature-grid">
+
+<div class="feature-card">
+<div class="icon">📈</div>
+<h3>Accurate Prediction</h3>
+<p>Advanced Machine Learning algorithms provide highly accurate demand forecasting.</p>
+</div>
+
+<div class="feature-card">
+<div class="icon">⚡</div>
+<h3>Fast Processing</h3>
+<p>Generate predictions instantly using a trained AI model.</p>
+</div>
+
+<div class="feature-card">
+<div class="icon">📦</div>
+<h3>Inventory Planning</h3>
+<p>Manage stock efficiently and reduce inventory losses.</p>
+</div>
+
+<div class="feature-card">
+<div class="icon">💰</div>
+<h3>Business Growth</h3>
+<p>Improve sales strategies and maximize profits.</p>
+</div>
+
+</div>
+</section>
+
+<!-- ==========================
+About Section
+========================== -->
+
+<section id="about" class="about">
+<h2>About This Project</h2>
+<p>
+The Demand Forecasting System is an AI-powered web application that predicts future product demand using Machine Learning. It helps businesses improve inventory management, optimize sales, and make better business decisions through accurate demand forecasting.
+</p>
+
+<div class="tech">
+<span>Python</span>
+<span>Flask</span>
+<span>Machine Learning</span>
+<span>HTML5</span>
+<span>CSS3</span>
+<span>Scikit-Learn</span>
+</div>
+</section>
+
+<!-- ==========================
+Contact Section
+========================== -->
+
+<section id="contact" class="contact">
+<h2>Developer</h2>
+<h3>Vishwas Saini and Priskshit Saini</h3>
+<p>Machine Learning | Data Science | Python | Flask Developer | Web Developer</p>
+
+<div class="contact-box">
+<p>📧 Email : vishwasbkbiet123@gmail.com, prikshitsaini307@gmail.com</p>
+<p>💻 GitHub : https://github.com/vishwasbkbiet123-bit, https://github.com/prikshitsaini307-dev</p>
+<p>🔗 LinkedIn : https://www.linkedin.com/in/vishwas-saini-908942331, https://www.linkedin.com/in/prikshit-saini-1b7a2a333</p>
+</div>
+</section>
+
+</div>
+
+<!-- ==========================
+Footer
+========================== -->
+
+<footer class="footer">
+<div class="footer-content">
+<h2>Demand Forecasting System</h2>
+<p>AI Powered Sales & Demand Prediction using Machine Learning</p>
+
+<div class="footer-links">
+<a href="#">Home</a>
+<a href="#predict">Prediction</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</div>
+
+<p class="copyright">© 2026 All Rights Reserved</p>
+<p>Designed & Developed by ❤️ Vishwas Saini and Prikshit Saini</p>
+</div>
+</footer>
+
+<!-- Scroll Button -->
+<button id="topBtn" onclick="topFunction()">⬆</button>
+
+<script>
+let mybutton = document.getElementById("topBtn");
+
+window.onscroll = function() { scrollFunction(); };
+
+function scrollFunction() {
+if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+mybutton.style.display = "block";
+} else {
+mybutton.style.display = "none";
+}
+}
+
+function topFunction() {
+window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+
 </body>
 </html>
