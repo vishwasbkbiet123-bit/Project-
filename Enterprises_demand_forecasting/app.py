@@ -55,7 +55,7 @@ def predict():
             # Convert log scale back to actual numbers
             actual_prediction = int(np.expm1(log_prediction)[0])
 
-            return render_template('result.html', prediction_text=f'Predicted Demand (Rating Count): {actual_prediction} units')
+            return render_template('result.html', prediction_text=f'{actual_prediction} units')
 
         except Exception as e:
             return render_template('result.html', prediction_text=f'Error in prediction: {str(e)}')
